@@ -20,7 +20,9 @@ const register = async (req, res) => {
     // Trả về token
     return res.status(200).json({ message: "Registration successful!", token });
   } catch (error) {
-    return res.status(400).json({ message: error.message });
+    return res
+      .status(400)
+      .json({ message: "An error occurred, please try again later!" });
   }
 };
 
