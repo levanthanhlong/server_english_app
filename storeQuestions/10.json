@@ -1,0 +1,92 @@
+[
+  {
+    "lesson_id": 10,
+    "question": "What is the capital of Japan?",
+    "option_a": "Beijing",
+    "option_b": "Seoul",
+    "option_c": "Tokyo",
+    "option_d": "Bangkok",
+    "correct_option": "C"
+  },
+  {
+    "lesson_id": 10,
+    "question": "Which planet is known as the Red Planet?",
+    "option_a": "Earth",
+    "option_b": "Mars",
+    "option_c": "Venus",
+    "option_d": "Jupiter",
+    "correct_option": "B"
+  },
+  {
+    "lesson_id": 10,
+    "question": "What is the chemical symbol for water?",
+    "option_a": "O2",
+    "option_b": "H2O",
+    "option_c": "CO2",
+    "option_d": "HO",
+    "correct_option": "B"
+  },
+  {
+    "lesson_id": 10,
+    "question": "Who wrote 'Romeo and Juliet'?",
+    "option_a": "William Shakespeare",
+    "option_b": "Charles Dickens",
+    "option_c": "Jane Austen",
+    "option_d": "Mark Twain",
+    "correct_option": "A"
+  },
+  {
+    "lesson_id": 10,
+    "question": "What is the largest ocean on Earth?",
+    "option_a": "Atlantic Ocean",
+    "option_b": "Indian Ocean",
+    "option_c": "Arctic Ocean",
+    "option_d": "Pacific Ocean",
+    "correct_option": "D"
+  },
+  {
+    "lesson_id": 10,
+    "question": "What is the currency of the United States?",
+    "option_a": "Euro",
+    "option_b": "Pound",
+    "option_c": "Dollar",
+    "option_d": "Yen",
+    "correct_option": "C"
+  },
+  {
+    "lesson_id": 10,
+    "question": "What is the boiling point of water at sea level?",
+    "option_a": "90°C",
+    "option_b": "100°C",
+    "option_c": "120°C",
+    "option_d": "150°C",
+    "correct_option": "B"
+  },
+  {
+    "lesson_id": 10,
+    "question": "Which continent is known as the 'Dark Continent'?",
+    "option_a": "Asia",
+    "option_b": "Africa",
+    "option_c": "Europe",
+    "option_d": "South America",
+    "correct_option": "B"
+  },
+  {
+    "lesson_id": 10,
+    "question": "What is the hardest natural substance on Earth?",
+    "option_a": "Gold",
+    "option_b": "Iron",
+    "option_c": "Diamond",
+    "option_d": "Platinum",
+    "correct_option": "C"
+  },
+  {
+    "lesson_id": 10,
+    "question": "Which gas do plants primarily use for photosynthesis?",
+    "option_a": "Oxygen",
+    "option_b": "Carbon Dioxide",
+    "option_c": "Nitrogen",
+    "option_d": "Hydrogen",
+    "correct_option": "B"
+  }
+]

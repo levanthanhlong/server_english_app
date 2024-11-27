@@ -4,7 +4,7 @@ const userModel = require("../models/userModel");
 
 const register = async (req, res) => {
   const { username, password, email, fullname } = req.body;
-  
+
   try {
     // kiểm tra xem username đã tồn tại chưa?
     const existingUser = await userModel.findUserByUsername(username);
@@ -16,13 +16,17 @@ const register = async (req, res) => {
     const userId = await userModel.addUser(username, password, email, fullname);
     // Tạo JWT token cho người dùng sau khi đăng ký thành công
     const token = jwt.sign({ userId }, "thanh2001");
-
     // Trả về token
-    return res.status(200).json({ message: "Registration successful!", token });
+    return res.status(200).json({
+      status: 1,
+      message: "Registration successful!",
+      token,
+    });
   } catch (error) {
-    return res
-      .status(400)
-      .json({ message: "An error occurred, please try again later!" });
+    return res.status(400).json({
+      status: 0,
+      message: "An error occurred, please try again later!",
+    });
   }
 };
 
@@ -31,6 +35,7 @@ const login = async (req, res) => {
   try {
     if (!username || !password) {
       return res.status(400).json({
+        status: 0,
         message: "Please fill in all information",
       });
     }
@@ -40,6 +45,7 @@ const login = async (req, res) => {
 
     if (!user) {
       return res.status(400).json({
+        status: 0,
         message: "Incorrect username",
       });
     }
@@ -49,6 +55,7 @@ const login = async (req, res) => {
 
     if (!isPasswordValid) {
       return res.status(400).json({
+        status: 0,
         message: "Incorrect password",
       });
     }
@@ -57,11 +64,14 @@ const login = async (req, res) => {
     // Tạo JWT token với userID
     const token = jwt.sign({ userID }, "thanh2001");
 
-    return res.status(201).json({ message: "Login successful!", token });
-  } catch (e) {
     return res
-      .status(500)
-      .json({ message: "An error occurred, please try again later!" });
+      .status(201)
+      .json({ status: 1, message: "Login successful!", token });
+  } catch (e) {
+    return res.status(500).json({
+      status: 0,
+      message: "An error occurred, please try again later!",
+    });
   }
 };
 

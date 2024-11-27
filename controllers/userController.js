@@ -16,11 +16,13 @@ const getUserInfo = async (req, res) => {
     const userID = decoded.userID;
 
     const userInfo = await userModel.findUserByUserID(userID);
-    const fullname = userInfo.full_name ?? 'no Name';
+    const fullname = userInfo.full_name ?? "no Name";
 
-    res.status(200).json({ message : "get userInfo success", fullname});
+    return res
+      .status(200)
+      .json({ status: 1, message: "get userInfo success", fullname });
   } catch (e) {
-    res.status(500).json({ message: String(e) });
+    return res.status(500).json({ message: String(e) });
   }
 };
 
