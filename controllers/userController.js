@@ -12,10 +12,10 @@ const getUserInfo = async (req, res) => {
     // Giải mã token và lấy ra payload (thông tin chứa trong token)
     const decoded = jwt.verify(token, secretKey);
 
-    // Lấy userID từ decoded token
-    const userID = decoded.userID;
+    // Lấy userID từ decoded token 
+    const userId = decoded.userId;
 
-    const userInfo = await userModel.findUserByUserID(userID);
+    const userInfo = await userModel.findUserByUserId(userId);
     const fullname = userInfo.full_name ?? "no Name";
 
     return res

@@ -1,5 +1,6 @@
 const pool = require("../config/database");
 const courseModel = require("./courseModel");
+
 const createLesson = async (courseId, lessonDescribe, videoUrl) => {
   const checkCourse = await courseModel.getCourseInfo(courseId);
   if (checkCourse) {
@@ -31,7 +32,7 @@ const getLessonInfo = async (lessonId) => {
   const [result] = await pool.query("SELECT * FROM lesson WHERE id = ?", 
     [lessonId],
   );
-  console.log(result);
+  // console.log(result);
   return result.length > 0 ? result[0] : null;
 };
 

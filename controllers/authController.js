@@ -60,9 +60,9 @@ const login = async (req, res) => {
       });
     }
 
-    const userID = user.id;
+    const userId = user.id;
     // Tạo JWT token với userID
-    const token = jwt.sign({ userID }, "thanh2001");
+    const token = jwt.sign({ userId }, "thanh2001");
 
     return res
       .status(201)

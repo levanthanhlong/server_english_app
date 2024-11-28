@@ -22,7 +22,8 @@ app.use("/api/user", userRoutes);
 app.use("/api/course", courseRoutes);
 app.use("/api/lesson", lessonRoutes);
 app.use("/api/userAndCourse", userAndCourseRoutes);
-app.get("/", function (req, res) {
+app.use("/api/question", questionRoutes);
+app.get("/", (req, res) => {
   res.send("helldddsd");
 });
 

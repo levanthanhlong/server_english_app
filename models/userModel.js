@@ -17,7 +17,7 @@ const findUserByUsername = async (username) => {
   return result.length > 0 ? result[0] : null;
 };
 
-const findUserByUserID = async (userID) => {
+const findUserByUserId = async (userID) => {
   const [result] = await pool.query("SELECT * FROM user WHERE id = ?", [
     userID,
   ]);
@@ -27,6 +27,6 @@ const findUserByUserID = async (userID) => {
 
 module.exports = {
   findUserByUsername,
-  findUserByUserID,
+  findUserByUserId,
   addUser,
 };
