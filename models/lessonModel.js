@@ -29,9 +29,9 @@ const getAllLessonInCourse = async (courseId) => {
 };
 
 const getLessonInfo = async (lessonId) => {
-  const [result] = await pool.query("SELECT * FROM lesson WHERE id = ?", 
-    [lessonId],
-  );
+  const [result] = await pool.query("SELECT * FROM lesson WHERE id = ?", [
+    lessonId,
+  ]);
   // console.log(result);
   return result.length > 0 ? result[0] : null;
 };

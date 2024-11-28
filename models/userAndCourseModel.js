@@ -23,7 +23,7 @@ const getUsersRegisterCourse = async (courseId) => {
     "SELECT * FROM course_user WHERE course_id = ?",
     [courseId]
   );
-  return result.length > 0 ? result : [];
+  return result.length;
 };
 
 const getCoursesUserRegister = async (userId) => {
@@ -31,7 +31,7 @@ const getCoursesUserRegister = async (userId) => {
     "SELECT * FROM course_user WHERE user_id = ?",
     [userId]
   );
-  return result.length > 0 ? result : [];
+  return result.length;
 };
 
 module.exports = {

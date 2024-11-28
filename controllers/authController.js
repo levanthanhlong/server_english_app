@@ -10,7 +10,10 @@ const register = async (req, res) => {
     const existingUser = await userModel.findUserByUsername(username);
 
     if (existingUser) {
-      throw new Error("Username already exists!");
+      return res.status(400).json({
+        status: 0,
+        message: "User already exists!",
+      });
     }
     // Trả về ID của người dùng vừa tạo
     const userId = await userModel.addUser(username, password, email, fullname);
@@ -23,7 +26,8 @@ const register = async (req, res) => {
       token,
     });
   } catch (error) {
-    return res.status(400).json({
+    console.log();
+    return res.status(500).json({
       status: 0,
       message: "An error occurred, please try again later!",
     });

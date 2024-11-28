@@ -21,7 +21,7 @@ const findUserByUserId = async (userID) => {
   const [result] = await pool.query("SELECT * FROM user WHERE id = ?", [
     userID,
   ]);
-   console.log(result);
+  console.log(result);
   return result.length > 0 ? result[0] : null;
 };
 
