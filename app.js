@@ -24,7 +24,7 @@ app.use("/api/lesson", lessonRoutes);
 app.use("/api/userAndCourse", userAndCourseRoutes);
 app.use("/api/question", questionRoutes);
 app.get("/", (req, res) => {
-  res.send("helldddsd");
+  res.send("hello world");
 });
 
 // Khởi động server

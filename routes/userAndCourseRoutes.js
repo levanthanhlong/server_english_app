@@ -11,5 +11,8 @@ router.get(
   "/getCoursesUserRegister",
   userAndCourseController.getCoursesUserRegister
 );
-
+router.get(
+  "/checkRegisterCourse",
+  userAndCourseController.checkRegisterCourse
+);
 module.exports = router;

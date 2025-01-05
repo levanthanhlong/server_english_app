@@ -55,6 +55,45 @@ const getUsersRegisterCourse = async (req, res) => {
   }
 };
 
+const checkRegisterCourse = async (req, res) => {
+  try {
+    const { token, courseId } = req.body;
+    if (!token) {
+      return res.status(400).json({ status: 0, message: "No token provided!" });
+    }
+    // Giải mã token và lấy ra payload (thông tin chứa trong token)
+    const decoded = jwt.verify(token, secretKey);
+
+    // Lấy userID từ decoded token
+    const userId = decoded.userId;
+    const checkRegisterCourse = await userAndCourseModel.checkRegisterCourse(
+      userId,
+      courseId
+    );
+    //console.log(checkRegisterCourse);
+    if (checkRegisterCourse == true) {
+      return res.status(200).json({
+        status: 1,
+        check: true,
+        message: "The course has been registered",
+      });
+    } else {
+      return res.status(200).json({
+        status: 0,
+        check: false,
+        message: "The course has not been registered",
+      });
+    }
+  } catch (e) {
+    console.log(e.message);
+    return res.status(500).json({
+      status: 0,
+      error: true,
+      message: e.message,
+    });
+  }
+};
+
 const getCoursesUserRegister = async (req, res) => {
   try {
     const { token } = req.body;
@@ -87,4 +126,5 @@ module.exports = {
   addUserAndCourse,
   getUsersRegisterCourse,
   getCoursesUserRegister,
+  checkRegisterCourse,
 };

@@ -3,8 +3,12 @@ const courseModel = require("../models/courseModel");
 //  create course
 const createCourse = async (req, res) => {
   try {
-    const { courseName, courseDescribe } = req.body;
-    const courseID = await courseModel.addCourse(courseName, courseDescribe);
+    const { courseName, courseDescribe, category } = req.body;
+    const courseID = await courseModel.addCourse(
+      courseName,
+      courseDescribe,
+      category
+    );
     return res.status(200).json({
       status: 1,
       message: "Add course success",
@@ -18,6 +22,7 @@ const createCourse = async (req, res) => {
   }
 };
 
+//get all courses
 const getAllCourses = async (req, res) => {
   try {
     const totalCourse = await courseModel.getAllCourses();
@@ -34,6 +39,40 @@ const getAllCourses = async (req, res) => {
   }
 };
 
+// get new courses
+const getNewCourses = async (req, res) => {
+  try {
+    const newCourses = await courseModel.getNewCourses();
+    return res.status(200).json({
+      status: 1,
+      message: "Get all courses success",
+      newCourses,
+    });
+  } catch (e) {
+    return res.status(500).json({
+      status: 0,
+      message: e.message,
+    });
+  }
+};
+
+// get courses by category
+const getCoursesByCategory = async (req, res) => {
+  try {
+    const { category } = req.body;
+    const categoryCourses = await courseModel.getCoursesByCategory(category);
+    return res.status(200).json({
+      status: 1,
+      message: "Get courses by category success",
+      categoryCourses,
+    });
+  } catch (e) {
+    return res.status(500).json({ status: 0, message: e.message });
+  }
+};
+
+
+// get course information
 const getCourseInfo = async (req, res) => {
   try {
     const { id } = req.body;
@@ -44,6 +83,31 @@ const getCourseInfo = async (req, res) => {
       message: "Get course info success!",
       courseInfo,
     });
+  } catch (e) {
+    return res.status(500).json({
+      status: 0,
+      message: e.message,
+    });
+  }
+};
+
+// search course by text
+const getSearchCourses = async (req, res) => {
+  try {
+    const { text } = req.body;
+    const listSearchCourse = await courseModel.getSearchCourses(text);
+    if(listSearchCourse.length < 1) {
+      return res.status(200).json({
+        status: 0,
+        message: "No course found",
+      });
+    }else {
+      return res.status(200).json({
+        status: 1,
+        message: "Get search courses success!",
+        listSearchCourse,
+      });
+    }
   } catch (e) {
     return res.status(500).json({
       status: 0,
@@ -82,4 +146,7 @@ module.exports = {
   getAllCourses,
   getCourseInfo,
   deleteCourse,
+  getCoursesByCategory,
+  getNewCourses,
+  getSearchCourses,
 };
