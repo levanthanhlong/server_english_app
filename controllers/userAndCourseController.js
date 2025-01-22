@@ -122,9 +122,44 @@ const getCoursesUserRegister = async (req, res) => {
   }
 };
 
+const getCoursesOfUser = async (req, res) => {
+  try {
+    const { token } = req.body;
+    if (!token) {
+      return res.status(400).json({ status: 0, message: "No token provided!" });
+    }
+    // Giải mã token và lấy ra payload (thông tin chứa trong token)
+    const decoded = jwt.verify(token, secretKey);
+
+    // Lấy userID từ decoded token
+    const userId = decoded.userId;
+    console.log(userId);
+    const listCourses = await userAndCourseModel.getCoursesOfUser(userId);
+    console.log(listCourses);
+    if (listCourses.length < 1) {
+      return res.status(200).json({
+        status: 0,
+        message: "You have not registered for any course yet",
+      });
+    }
+    return res.status(200).json({
+      status: 1,
+      message: "Get list Courses of user success",
+      listCourses,
+    });
+
+  } catch (e) {
+    return res.status(500).json({
+      status: 0,
+      message: e.message,
+    });
+  }
+};
+
 module.exports = {
   addUserAndCourse,
   getUsersRegisterCourse,
   getCoursesUserRegister,
   checkRegisterCourse,
+  getCoursesOfUser
 };

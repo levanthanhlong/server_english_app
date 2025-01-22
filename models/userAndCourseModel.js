@@ -32,7 +32,7 @@ const getCoursesUserRegister = async (userId) => {
     "SELECT * FROM course_user WHERE user_id = ?",
     [userId]
   );
-  
+
   return result.length;
 };
 
@@ -42,18 +42,29 @@ const checkRegisterCourse = async (userId, courseId) => {
     [userId, courseId]
   );
   console.log(result.length);
-  console.log(typeof(result));
+  console.log(typeof result);
   if (result.length != 0) {
     return true;
   } else {
     return false;
   }
   //return result.length > 0 ? result.length : '';
-}
+};
+
+const getCoursesOfUser = async (userId) => {
+  const [result] = await pool.query(
+    "SELECT c.id, c.course_name, c.course_describe, c.category, c.created_at FROM course_user cu JOIN courses c ON cu.course_id = c.id WHERE cu.user_id = ?;",
+    [userId]
+  );
+  console.log(result.length);
+  console.log(result);
+  return result.length > 0 ? result : [];
+};
 
 module.exports = {
   addUserAndCourse,
   getCoursesUserRegister,
   getUsersRegisterCourse,
-  checkRegisterCourse
+  checkRegisterCourse,
+  getCoursesOfUser
 };
